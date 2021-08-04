@@ -1,0 +1,30 @@
+.uol-news-footer-links {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  list-style: none;
+  padding: 0;
+  gap: 16px;
+
+  .uol-news-footer-link {
+    max-width: 380px;
+    .uol-h3 {
+      display: block;
+    }
+    a {
+      display: block;
+    }
+    
+    &:last-child {
+      text-align: right;
+    }
+  }
+}
+
+.uol-news-hr {
+  width: 100%;
+  max-width: 100%;
+  margin: 50px 0;
+  background-color: #cccccc;
+  height: 1px;
+}

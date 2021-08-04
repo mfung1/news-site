@@ -1,0 +1,43 @@
+---
+pageTitle: "Post Template | News and Press | University of Lincoln"
+description: "The University of Lincoln, based in the City of Lincoln UK offers students degree courses underpinned by research engagement."
+title: "Homepage"
+layout: 'layouts/base.njk'
+---
+
+<section>
+  <article>
+    <div class="uol-section uol-section--intro" style="background-image:url('https://news.blogs.lincoln.ac.uk/files/2021/02/UoL-Anatomy-workshop-1200x630.jpg')">
+      <div class="wrapper">
+        <div class="content">
+          <h1 class="uol-h1 p-lr-20">{{posts[1].title.rendered|striptags|replace(r/(&.+;)/ig, "")}}</h1>
+          <p class="uol-standfirst">{{posts[1].date|postDate}}</p>
+          <p class="uol-standfirst">Written by {{posts[1]._embedded.author[0].name}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="wrapper">
+    {% set contentArr = posts[1].content.rendered.split('\n') %}
+    {% for contentItem in contentArr %}
+      {% if loop.index == 1 %}
+        <p class="uol-standfirst">{{contentItem|striptags|replace(r/(&.+;)/ig, "")}}</p>
+      {% else %}
+        <p class="uol-body">{{contentItem|replace(r/(<\/?(?:a)[^>]*>)|<[^>]+>/ig, "$1")|replace(r/(&.+;)/ig, "")|safe}}</p>
+      {% endif %}
+    {% endfor %}
+    <hr class="uol-news-hr">
+    </div>
+  </article>
+</section>
+<section class="wrapper">
+  <ul class="uol-news-footer-links">
+    <li class="uol-news-footer-link">
+      <span class="uol-h3 mb-24">Previous post</span>
+      <a href="{{posts[0].link|safe}}">{{posts[0].title.rendered|striptags|replace(r/(&.+;)/ig, "")}}</a>
+    </li>
+    <li class="uol-news-footer-link">
+      <span class="uol-h3 mb-24">Next post</span>
+      <a href="{{posts[2].link|safe}}">{{posts[2].title.rendered|striptags|replace(r/(&.+;)/ig, "")}}</a>
+    </li>
+  </ul>
+</section>

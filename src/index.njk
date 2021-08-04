@@ -1,0 +1,48 @@
+---
+pageTitle: "News and Press | University of Lincoln"
+description: "The University of Lincoln, based in the City of Lincoln UK offers students degree courses underpinned by research engagement."
+title: "Homepage"
+layout: 'layouts/base.njk'
+---
+<section class="uol-section uol-section--primary">
+  <div class="wrapper">
+    <h1 class="uol-h1">Latest News</h1>
+    <p class="uol-standfirst">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore blanditiis qui velit dolores, quaerat ut! Totam distinctio quis, reiciendis nostrum harum eveniet voluptatibus, vitae rem vero ipsa corporis, similique cumque.</p>
+  </div>
+</section>
+  {# Posts #}
+<section class="uol-section wrapper">
+<ul class="grid grid-wrap">
+{% for post in posts %}
+  <li class="tile">
+    <a href="{#{{post.link}}#}/single/index.html">
+      <div class="video_cnt" style="background-image:url('{{post._embedded['wp:featuredmedia']['0'].source_url}}')">
+      </div>
+      <div class="video_caption">
+        <h3 class="uol-h3" data-matchheights="title">{{post.title.rendered.slice(0, 64)|replace(r/(&.+;)/ig, "")}}{% if post.title.rendered.length > 64 %}&hellip;{% endif %}</h3>
+        <p class="video_cat" data-matchheights="category">{{post._embedded.author[0].name}} - {{post.date|postDate}}</p>
+        <p class="uol-body" data-matchheights="desc">{{post.excerpt.rendered.slice(0, 160)|striptags|replace(r/(&.+;)/ig, "")}}&hellip;</p>
+        <span class="btn btn-primary">Find out more</span>
+      </div>
+    </a>
+  </li>
+{% endfor %}
+</ul>
+  {# {% for post in posts %}
+  <article class="wrapper" data-section="billboard">
+    {% if loop.index % 2 == 0 %}
+    <a class="uol-hero uol-hero--reverse" href="{{post.link}}">
+    {% else %}
+    <a class="uol-hero" href="{{post.link}}">
+    {% endif %}
+      <div class="uol-hero_imgCnt" style="background-image: url(&quot;{{post._embedded['wp:featuredmedia']['0'].source_url}}&quot;);"></div>
+      <div class="uol-hero_cpy">
+        <h3 class="uol-h2">{{post.title.rendered|replace(r/(&.+;)/ig, "") }}</h3>
+        <p class="video_cat">{{post._embedded.author[0].name}} - {{post.date|postDate}}</p>
+        <p class="uol-body">{{post.excerpt.rendered.slice(0, 160)|striptags|replace(r/(&.+;)/ig, "")}}&hellip;</p>
+        <span class="btn btn-primary">Find out more</span>
+      </div>
+    </a>
+  </article>
+  {% endfor %} #}
+</section>
